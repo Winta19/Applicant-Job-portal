@@ -9,7 +9,7 @@ function Job({ role, department, startDate, endDate, id }) {
         <td className="py-2 text-start px-3 ">
           {startDate} - {endDate}
         </td>
-        <td className="text-start px-3">
+        <td className="text-start px-4">
           <Link
             to={`/job-details/${id}`}
             state={{ role, department, startDate, endDate }}
