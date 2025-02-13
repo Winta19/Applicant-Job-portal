@@ -31,158 +31,342 @@
     const [jobs, setJobs] = useState(jobsList);
   */
 }
+///////////////////////////////////
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import axios from "axios";
+// import Job from "./Job";
+// const jobsList = [
+//   {
+//     id: 1,
+//     role: "Software Engineer",
+//     department: "SASS",
+//     startDate: "2020-01-01",
+//     endDate: "2021-12-31",
+//   },
+//   {
+//     id: 2,
+//     role: "backend Engineer",
+//     department: "SASS",
+//     startDate: "2020-01-01",
+//     endDate: "2021-12-31",
+//   },
 
+//   {
+//     id: 3,
+//     role: "Finance",
+//     department: "Finance",
+//     startDate: "2020-01-01",
+//     endDate: "2021-12-31",
+//   },
+// ];
+
+// export default function JobList() {
+//   const [jobs, setJobs] = useState(jobsList);
+//   console.log(jobs);
+
+//   // fetching data from api
+//   const [data, setData] = useState(null);
+//   useEffect(() => {
+//     axios
+//       .get("https://mocki.io/v1/8dbe05f4-149d-4bd1-a720-20d1bf3bc844")
+//       .then((response) => setData(response?.data))
+//       .catch((error) => console.log(error));
+//   }, []);
+//   console.log(data, "data");
+
+//   // search input
+//   const [searchTerm, setSearchTerm] = useState("");
+//   // department selection
+//   // when user select an option from the dropdown, the selected value will be setted to deptOption
+//   // then according to selected value, the jobslist's department value is compared to the selected value
+//   const [deptOption, setDeptOption] = useState("");
+//   const selectHandler = (event) => {
+//     setDeptOption(event.target.value);
+//     if (event.target.value === "" || event.target.value === "all") {
+//       setJobs(jobsList);
+//     } else {
+//       let filteredBydepartment = jobsList.filter(function (job) {
+//         return job.department
+//           .toLocaleLowerCase()
+//           .includes(event.target.value.toLocaleLowerCase());
+//       });
+//       setJobs(filteredBydepartment);
+//     }
+//   };
+
+//   const inputHandler = (event) => {
+//     setSearchTerm(event.target.value);
+//     if (event.target.value === "") {
+//       setJobs(jobsList);
+//     } else {
+//       let filteredJobs = jobsList.filter((job) =>
+//         job.role
+//           .toLocaleLowerCase()
+//           .includes(event.target.value.toLocaleLowerCase())
+//       );
+//       setJobs(filteredJobs);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="flex flex-col space-y-4 w-full">
+//         <div className="flex items-center bg-white border border-yellow-500">
+//           <div className="w-1/3 border-r border-yellow-500">
+//             <select
+//               className="w-full bg-white border-none py-2 px-4 focus:ring-0 focus:border-none"
+//               name=""
+//               id=""
+//               value={deptOption}
+//               onChange={selectHandler}
+//             >
+//               <option value="all">All Departments</option>
+//               <option value="SASS">SASS</option>
+//               <option value="Finance">Finance</option>
+//               <option value="Networking">Networking</option>
+//               <option value="Accounting">Accounting</option>
+//             </select>
+//           </div>
+//           <div className="w-2/3   relative">
+//             <div className="absolute flex items-center  top-0 bottom-0">
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 fill="none"
+//                 viewBox="0 0 24 24"
+//                 strokeWidth={1.5}
+//                 stroke="currentColor"
+//                 className="size-6"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+//                 />
+//               </svg>
+//             </div>
+//             <input
+//               value={searchTerm}
+//               onChange={inputHandler}
+//               className=" w-full px-8"
+//               type="text"
+//               name=""
+//               placeholder="Search Job Here"
+//               id=""
+//             />
+//           </div>
+//         </div>
+//         <p className="text-center text-lg">Showing all Jobs</p>
+//         <div className="relative w-full overflow-x-auto">
+//           <table className="w-full table table-auto">
+//             <thead className="text-xl border-b border-gray-200">
+//               <tr className="">
+//                 <th className="py-2 text-start px-3">Role</th>
+//                 <th className="py-2 text-start px-3 ">Departement</th>
+//                 <th className="py-2 text-start px-3 "> Date</th>
+//                 <th className="py-2 text-start px-3 "></th>
+//               </tr>
+//             </thead>
+//             <tbody className="text-center text-lg ">
+//               {data?.map((item, index) => (
+//                 <Job
+//                   key={index}
+//                   id={item?.id}
+//                   role={item?.name}
+//                   department={item?.department}
+//                   startDate={item?.startDate}
+//                   endDate={item?.endDate}
+//                 />
+//               ))}
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+///////////////////////////////////////////
 import { useState } from "react";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import Job from "./Job";
-const jobsList = [
-  {
-    id: 1,
-    role: "Software Engineer",
-    department: "SASS",
-    startDate: "2020-01-01",
-    endDate: "2021-12-31",
-  },
-  {
-    id: 2,
-    role: "backend Engineer",
-    department: "SASS",
-    startDate: "2020-01-01",
-    endDate: "2021-12-31",
-  },
 
-  {
-    id: 3,
-    role: "Finance",
-    department: "Finance",
-    startDate: "2020-01-01",
-    endDate: "2021-12-31",
-  },
-];
+export default function ApplyForm() {
+  const { id } = useParams(); // Get job ID from URL
+  const [formData, setFormData] = useState({
+    fullName: "",
+    cgpa: "",
+    email: "",
+    phone: "",
+    cv: null,
+  });
 
-export default function JobList() {
-  const [jobs, setJobs] = useState(jobsList);
-  console.log(jobs);
+  const [message, setMessage] = useState("");
 
-  // fetching data from api
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    axios
-      .get("https://mocki.io/v1/8dbe05f4-149d-4bd1-a720-20d1bf3bc844")
-      .then((response) => setData(response?.data))
-      .catch((error) => console.log(error));
-  }, []);
-  console.log(data, "data");
-
-  // search input
-  const [searchTerm, setSearchTerm] = useState("");
-  // department selection
-  // when user select an option from the dropdown, the selected value will be setted to deptOption
-  // then according to selected value, the jobslist's department value is compared to the selected value
-  const [deptOption, setDeptOption] = useState("");
-  const selectHandler = (event) => {
-    setDeptOption(event.target.value);
-    if (event.target.value === "" || event.target.value === "all") {
-      setJobs(jobsList);
-    } else {
-      let filteredBydepartment = jobsList.filter(function (job) {
-        return job.department
-          .toLocaleLowerCase()
-          .includes(event.target.value.toLocaleLowerCase());
-      });
-      setJobs(filteredBydepartment);
-    }
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
 
-  const inputHandler = (event) => {
-    setSearchTerm(event.target.value);
-    if (event.target.value === "") {
-      setJobs(jobsList);
-    } else {
-      let filteredJobs = jobsList.filter((job) =>
-        job.role
-          .toLocaleLowerCase()
-          .includes(event.target.value.toLocaleLowerCase())
+  // Handle file upload
+  const handleFileChange = (e) => {
+    console.log("try", e.target.files[0]);
+    const { name } = e.target;
+    setFormData({ ...formData, [name]: e.target.files[0] });
+    console.log(formData);
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("FullName", formData.fullName);
+    formDataToSend.append("cgpa", formData.cgpa);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("cv", formData.cv);
+    formDataToSend.append("status", "interview");
+    formDataToSend.append("jobId", id); // Associate applicant with job ID
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/applicantForms",
+        formDataToSend,
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
-      setJobs(filteredJobs);
+      // Assuming the response contains the newly created applicant form data
+      setMessage("Application submitted successfully!");
+
+      // Optionally log the response to see what you get back
+      console.log(response.data);
+
+      // Optionally, you can reset the form or perform any other actions
+      setFormData({
+        fullName: "",
+        cgpa: "",
+        email: "",
+        phone: "",
+        cv: null,
+        status: "",
+      });
+    } catch (error) {
+      console.error("Error submitting application", error);
+      setMessage("Failed to submit application. Please try again.");
     }
   };
 
   return (
-    <>
-      <div className="flex flex-col space-y-4 w-full">
-        <div className="flex items-center bg-white border border-yellow-500">
-          <div className="w-1/3 border-r border-yellow-500">
-            <select
-              className="w-full bg-white border-none py-2 px-4 focus:ring-0 focus:border-none"
-              name=""
-              id=""
-              value={deptOption}
-              onChange={selectHandler}
-            >
-              <option value="all">All Departments</option>
-              <option value="SASS">SASS</option>
-              <option value="Finance">Finance</option>
-              <option value="Networking">Networking</option>
-              <option value="Accounting">Accounting</option>
-            </select>
-          </div>
-          <div className="w-2/3   relative">
-            <div className="absolute flex items-center  top-0 bottom-0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                />
-              </svg>
-            </div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      {/* Left Side - Back to Job Details Link */}
+      <div className="absolute left-10 top-20">
+        <Link
+          to={`/job-details/${id}`}
+          className="text-blue-500 hover:underline text-lg font-medium"
+        >
+          ← Back to Job Details
+        </Link>
+      </div>
+
+      {/* Form Box */}
+      <div className="bg-white shadow-lg rounded-lg p-8 w-96">
+        <h2 className="text-xl font-semibold text-center mb-4">Apply Now</h2>
+
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          {/* Full Name */}
+          <div>
+            <label htmlFor="fullName" className="block font-medium">
+              Full Name:
+            </label>
             <input
-              value={searchTerm}
-              onChange={inputHandler}
-              className=" w-full px-8"
               type="text"
-              name=""
-              placeholder="Search Job Here"
-              id=""
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
           </div>
-        </div>
-        <p className="text-center text-lg">Showing all Jobs</p>
-        <div className="relative w-full overflow-x-auto">
-          <table className="w-full table table-auto">
-            <thead className="text-xl border-b border-gray-200">
-              <tr className="">
-                <th className="py-2 text-start px-3">Role</th>
-                <th className="py-2 text-start px-3 ">Departement</th>
-                <th className="py-2 text-start px-3 "> Date</th>
-                <th className="py-2 text-start px-3 "></th>
-              </tr>
-            </thead>
-            <tbody className="text-center text-lg ">
-              {data?.map((item, index) => (
-                <Job
-                  key={index}
-                  id={item?.id}
-                  role={item?.name}
-                  department={item?.department}
-                  startDate={item?.startDate}
-                  endDate={item?.endDate}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
+
+          {/* CGPA */}
+          <div>
+            <label htmlFor="cgpa" className="block font-medium">
+              CGPA:
+            </label>
+            <input
+              type="number"
+              id="cgpa"
+              name="cgpa"
+              value={formData.cgpa}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block font-medium">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label htmlFor="phone" className="block font-medium">
+              Phone:
+            </label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          {/* CV Upload */}
+          <div>
+            <label htmlFor="cv" className="block font-medium">
+              CV:
+            </label>
+            <input
+              type="file"
+              id="cv"
+              name="cv"
+              onChange={handleFileChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Submit
+            </button>
+          </div>
+
+          {/* Success or Error Message */}
+          {message && <p className="text-center text-green-500">{message}</p>}
+        </form>
       </div>
-    </>
+    </div>
   );
 }
-

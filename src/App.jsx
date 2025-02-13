@@ -8,9 +8,9 @@ import LifeAtIe from "./pages/LifeAtIe";
 
 import JobDetails from "./pages/JobDetails";
 import ApplyForm from "./pages/ApplyForm";
-import AdminPanel from "./pages/admin/AdminPanel";
-import SignIn from "./pages/pages/Authentication/SignIn";
-import SignUp from "./pages/pages/Authentication/SignUp";
+
+import Layout from "./components/Layout";
+
 {
   /*import JobDescription from './components/JobDescription';*/
 }
@@ -18,24 +18,24 @@ import SignUp from "./pages/pages/Authentication/SignUp";
 function App() {
   return (
     <>
-      <div className="">
-        {/*<JobDescription />*/}
-        <Routes>
-          {/* //////////////////////////////  Admin route //////////////// */}
-          <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/admin/sign-in" element={<SignIn />} />
-          <Route path="/admin/sign-up" element={<SignUp />} />
-          {/* ////////////////////////////////////////////////////////////  */}
+      <Layout>
+        <div className="">
+          {/*<JobDescription />*/}
+          <Routes>
+            {/* //////////////////////////////  Admin route //////////////// */}
 
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/lifeatie" element={<LifeAtIe />} />
-          <Route path="/benefits" element={<Benefits />} />
-          <Route path="/job-details/:id" element={<JobDetails />} />
-          <Route path="/ApplyForm" element={<ApplyForm />} />
-        </Routes>
-        {/* <Home /> */}
-      </div>
+            {/* ////////////////////////////////////////////////////////////  */}
+
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/lifeatie" element={<LifeAtIe />} />
+            <Route path="/benefits" element={<Benefits />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
+            <Route path="/ApplyForm/:id" element={<ApplyForm />} />
+          </Routes>
+          {/* <Home /> */}
+        </div>
+      </Layout>
     </>
   );
 }

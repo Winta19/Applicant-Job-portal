@@ -1,10 +1,7 @@
-
-export default function Footer(){
-    return (
-        <>
-        <div>
-            this is my header
-        </div>
-        </>
-    );
+export default function Footer() {
+  return (
+    <>
+      <div className="px-20">this is my footer</div>
+    </>
+  );
 }

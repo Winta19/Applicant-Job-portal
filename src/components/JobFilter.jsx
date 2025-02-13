@@ -11,7 +11,7 @@ function JobFilter() {
   }
   return (
     <>
-      <div className="flex items-center bg-white border border-yellow-500">
+      <div className="flex items-center bg-white border border-yellow-500 ">
         <div className="w-1/3 border-r border-yellow-500">
           <select
             className="w-full bg-white border-none py-2 px-4 focus:ring-0 focus:border-none"

@@ -56,6 +56,7 @@ export default {
           2: "#F7F9FC",
           3: "#FAFAFA",
         },
+        primary_ie: "#46B8EC",
         graydark: "#333A48",
         whiten: "#F1F5F9",
         whiter: "#F5F7FD",
