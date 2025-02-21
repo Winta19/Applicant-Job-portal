@@ -27,7 +27,7 @@
 import { Link } from "react-router-dom";
 import companyImage from "../assets/IElogo.png"; // Adjust the path as needed
 
-export default function MyHeader() {
+export default function MyHeaders() {
   return (
     <>
       <div className="flex px-20 py-2 justify-between border-b items-center">
