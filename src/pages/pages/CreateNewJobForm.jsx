@@ -36,6 +36,8 @@ export default function CreateNewJobForm() {
   }, []);
 
   const handleChange = (e) => {
+    console.log(" e.target;", e.target);
+
     const { name, value } = e.target;
     setJob((prev) => ({
       ...prev,
@@ -43,23 +45,23 @@ export default function CreateNewJobForm() {
     }));
   };
 
-  const handleSelectedChange = (name, value) => {
-    console.log("name->", name, "value->", value);
+  // const handleSelectedChange = (name, value) => {
+  //   console.log("name->", name, "value->", value);
 
-    setJob((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  //   setJob((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
 
-    console.log("job", job);
-  };
+  //   console.log("job", job);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const newJob = {
         ...job,
-        locationId: job.locationId ? job.locationId : null, // 👈 Fix here
+        // locationId: job.locationId ? job.locationId : null, // 👈 Fix here
         startDate: new Date(job.startDate),
         endDate: new Date(job.endDate),
       };
@@ -131,13 +133,9 @@ export default function CreateNewJobForm() {
               name="departmentId"
               id="department"
               className="w-full p-2 border rounded"
-              onChange={(e) =>
-                handleSelectedChange("departmentId", e.target.value)
-              }
+              onChange={handleChange}
             >
-              <option disabled value="">
-                Choose department
-              </option>
+              <option value="">Choose department</option>
               {departments.map((department) => (
                 <option key={department.id} value={department.id}>
                   {department.name}
@@ -179,7 +177,7 @@ export default function CreateNewJobForm() {
               required
               className="w-full p-2 border rounded"
             >
-              <option disabled>Select Status</option>
+              <option value="">Select Status</option>
               <option value="Open">Open</option>
               <option value="Closed">Closed</option>
               <option value="On Hold">On Hold</option>
@@ -236,13 +234,9 @@ export default function CreateNewJobForm() {
               name="locationId"
               id="locationId"
               className="w-full p-2 border rounded"
-              onChange={(e) =>
-                handleSelectedChange("locationId", e.target.value)
-              }
+              onChange={handleChange}
             >
-              <option disabled value="">
-                Choose location
-              </option>
+              <option value="">Choose location</option>
               {locations.map((location) => (
                 <option key={location.id} value={location.id}>
                   {location.address}
